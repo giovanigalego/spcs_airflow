@@ -1,0 +1,1 @@
+print('AGORA VAI DISGRAÇA')
