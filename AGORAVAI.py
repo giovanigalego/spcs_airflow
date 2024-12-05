@@ -1,1 +1,0 @@
-print('AGORA VAI DISGRAÇA')
