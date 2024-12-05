@@ -17,7 +17,7 @@ DEFAULT_ARGS = {
 }
 
 with DAG(
-    dag_id="sample_python_dag",default_args=DEFAULT_ARGS,
+    dag_id="sera_que_vai",default_args=DEFAULT_ARGS,
     tags=["spcs-demo"],
     schedule="@once",
     catchup=False,
