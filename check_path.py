@@ -24,5 +24,5 @@ with DAG(
 ) as dag:
     
    run_dbt_model = BashOperator(task_id='list_path', 
-                        bash_command = "ls- l /opt/airflow/dbt/teste_equatorial"
+                        bash_command = "ls -l /opt/airflow/dbt/teste_equatorial"
                       )
