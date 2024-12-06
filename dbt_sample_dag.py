@@ -5,18 +5,26 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 
 
-default_args = {
-    'owner': 'airflow',
-    'depends_on_past': False,
-    'start_date': datetime(2023, 5, 1)
+DEFAULT_ARGS = {
+  'owner': 'demo',
+  'depends_on_past': False,
+  'start_date': datetime(2024, 5, 1),
+  'email': ['useremail@email.com'],
+  'email_on_failure': True,
+  'email_on_retry': False,
+  'retries': 0,
+  'retry_delay': timedelta(minutes = 5),
+  #'on_failure_callback': airflow_slack_alerts.task_fail_slack_alert
 }
 
-
-# Create the DAG with the specified schedule interval
-dag = DAG('dbt_dag', default_args=default_args, schedule_interval=timedelta(days=1), catchup=False)
-# Define the dbt run command as a BashOperator
-run_dbt_model = BashOperator(
-    task_id='run_dbt_model',
-    bash_command='cd /opt/airflow/dbt/teste_equatorial && dbt run --profiles-dir /opt/airflow/dbt/teste_equatorial/',
-    dag=dag
-)
+with DAG(
+    dag_id="dbt_python_dag",default_args=DEFAULT_ARGS,
+    tags=["spcs-demo"],
+    schedule="@once",
+    catchup=False,
+) as dag:
+    
+   run_dbt_model = BashOperator(task_id='run_dbt_model', 
+                        bash_command = "cd /opt/airflow/dbt/teste_equatorial && dbt run --profiles-dir /opt/airflow/dbt/teste_equatorial/"
+                      )
+   
