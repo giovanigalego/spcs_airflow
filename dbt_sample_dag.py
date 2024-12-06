@@ -8,13 +8,12 @@ from airflow.operators.bash_operator import BashOperator
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2023, 5, 1),
-    'catchup':False
+    'start_date': datetime(2023, 5, 1)
 }
 
 
 # Create the DAG with the specified schedule interval
-dag = DAG('dbt_dag', default_args=default_args, schedule_interval=timedelta(days=1))
+dag = DAG('dbt_dag', default_args=default_args, schedule_interval=timedelta(days=1), catchup=False)
 # Define the dbt run command as a BashOperator
 run_dbt_model = BashOperator(
     task_id='run_dbt_model',
