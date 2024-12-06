@@ -8,9 +8,6 @@ DEFAULT_ARGS = {
   'owner': 'demo',
   'depends_on_past': False,
   'start_date': datetime(2024, 5, 1),
-  'email': ['useremail@email.com'],
-  'email_on_failure': True,
-  'email_on_retry': False,
   'retries': 0,
   'retry_delay': timedelta(minutes = 5),
   #'on_failure_callback': airflow_slack_alerts.task_fail_slack_alert
@@ -24,5 +21,5 @@ with DAG(
 ) as dag:
     
    run_dbt_model = BashOperator(task_id='list_path', 
-                        bash_command = "ls -l /opt/airflow/dbt/teste_equatorial"
+                        bash_command = "ls -l /opt/airflow/ && ls -l /opt/airflow/dbt/"
                       )
