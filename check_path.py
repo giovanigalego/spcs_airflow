@@ -21,5 +21,5 @@ with DAG(
 ) as dag:
     
    run_dbt_model = BashOperator(task_id='list_path', 
-                        bash_command = "ls -l /snowflake/ && ls -l /snowflake/session/ && ls -l /snowflake/session/data/ && printenv"
+                        bash_command = "printenv && ls -l /snowflake/"
 )
